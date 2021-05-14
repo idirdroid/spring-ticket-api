@@ -40,11 +40,11 @@ public class TicketController {
 
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateTicket(@RequestBody int id){
+    public void updateTicket(@RequestBody Long id){
         System.out.println("Clôture du ticket du ticket n°"+ id);
         //Suppression du dernier ticket en BDD
 
-        ticketDao.delete(Long.valueOf(id));
+        ticketDao.delete(id);
     }
 
 }

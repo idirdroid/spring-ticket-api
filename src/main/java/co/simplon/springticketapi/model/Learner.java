@@ -1,18 +1,18 @@
 package co.simplon.springticketapi.model;
 
 public class Learner {
-    private int id;
+    private int idLearner;
     private String lastname;
     private String firstname;
 
-    public Learner(int id, String lastname, String firstname) {
-        this.id = id;
+    public Learner(int idLearner, String lastname, String firstname) {
+        this.idLearner = idLearner;
         this.lastname = lastname;
         this.firstname = firstname;
     }
 
-    public int getId() {
-        return id;
+    public int getIdLearner() {
+        return idLearner;
     }
 
     public String getLastname() {
@@ -26,7 +26,7 @@ public class Learner {
     @Override
     public String toString() {
         return "Learner{" +
-                "id=" + id +
+                "id=" + idLearner +
                 ", lastname='" + lastname + '\'' +
                 ", firstname='" + firstname + '\'' +
                 '}';

@@ -34,15 +34,15 @@ public class TicketDao implements Dao<Ticket> {
     @Override
     public void save(Ticket ticket) {
         // Insertion du ticket en base
-        String sql = "INSERT INTO ticket (description, id_learner) values ('"+ ticket.getDescription() + "','"+ ticket.getIdLearner() +"')";
-        jdbcTemplate.execute(sql);
+        String sql = "INSERT INTO ticket (description, id_learner) values (?, ?)";
+        jdbcTemplate.update(sql, ticket.getDescription(), ticket.getIdLearner());
     }
 
     @Override
     public void delete(Long id) {
         // Suppression du dernier ticket
-        String sql = "UPDATE ticket SET open = 'false' WHERE id = '" + id + "'";
-        jdbcTemplate.execute(sql);
+        String sql = "UPDATE ticket SET open = 'false' WHERE id = ?";
+        jdbcTemplate.update(sql, id);
     }
 
 }

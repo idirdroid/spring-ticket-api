@@ -31,4 +31,11 @@ public class LearnerController {
         System.out.println(learner.toString());
         learnerDao.save(learner);
     }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void deleteLearner(@RequestBody Long id){
+        System.out.println("Suppression de l'Apprenant n°: " + id);
+        learnerDao.delete(id);
+    }
 }

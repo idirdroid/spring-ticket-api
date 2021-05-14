@@ -31,12 +31,14 @@ public class LearnerDao implements Dao<Learner> {
 
     @Override
     public void save(Learner learner) {
-        String sql = "INSERT INTO learner (firstname, lastname) values ('"+ learner.getFirstname() + "','"+ learner.getLastname() +"')";
-        jdbcTemplate.execute(sql);
+        String sql = "INSERT INTO learner (firstname, lastname) values (?, ?)";
+        jdbcTemplate.update(sql, learner.getFirstname(), learner.getLastname());
     }
 
     @Override
     public void delete(Long id) {
-        // A vous de jouer
+        // Suppression de l'Appreunant
+        String sql = "DELETE FROM learner WHERE id_learner = ?";
+        jdbcTemplate.update(sql, id);
     }
 }

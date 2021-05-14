@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learners</title>
+
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<h1>Distributeur de tickets pour la promo 🎫</h1>
+<h2>👽 Ici c'est comme à la poissonerie 🐠, il faut faire la queue !</h2>
+<a href="index.html"><< Retour</a>
+<form id="learner-form" method="post">
+    <label for="nom">Nom: </label>
+    <input type="text" id="nom" required>
+    <label for="prenom">Prénom: </label>
+    <input type="text" id="prenom" required>
+    <button type="submit">Ajouter l'apreunant</button>
+</form>
+
+<section>
+    <h2>Liste des apprenant.e.s</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Supprimer</th>
+        </tr>
+        </thead>
+        <tbody id="learner-body">
+        </tbody>
+    </table>
+</section>
+
+<script src="main.js"></script>
+<script src="learners.js"></script>
+</body>
+</html>

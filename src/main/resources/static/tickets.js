@@ -1,29 +1,4 @@
-//Variable de récupération de l'id de ticket le plus petit
-let lastHelpRequestid = 0;
 
-
-//Url serveur distant
-const baseApiUrl = 'http://localhost:8080/';
-
-//Fonction API
-async function callApi(url, request, type, displayFn) {
-    //Temporisation pour mettre à jour le tableau de ticket
-    await new Promise(r => setTimeout(r, 100));
-    let urlFull;
-    //type = 'GET';
-    urlFull = baseApiUrl + request;
-    //console.log(urlFull);
-
-    fetch(urlFull).then(function (response) {
-        response.json().then(function (result) {
-            //Execution de la fonction d'affichage envoyée en paramètre
-            //console.log(result);
-            displayFn(result);
-        });
-    }).catch(function (error) {
-        console.log('Il y a eu un problème avec la récupération des données' + error.message);
-    })
-}
 
 //Fonction - Affichage du tableau de ticket en cours
 let displayFn_tableau = function (result) {
@@ -35,7 +10,7 @@ let displayFn_tableau = function (result) {
     const table = document.getElementById("table-body");
     table.innerHTML = '';
 
-
+console.log(result);
     for (let i = 0; i < result.length; i++) {
 
         // Je m'occupe de créer une nouvelle ligne dans le tableau
@@ -48,7 +23,7 @@ let displayFn_tableau = function (result) {
         ligne.appendChild(td1);
 
         const td2 = document.createElement("td");
-        td2.textContent = result[i]["idLearner"] + ' ' + result[i]["firstname"] + ' ' + result[i]["lastname"];
+        td2.textContent = result[i]["firstname"] + ' ' + result[i]["lastname"];
         ligne.appendChild(td2);
 
         const td3 = document.createElement("td");
@@ -87,7 +62,7 @@ let displayFn_liste = function (result){
     let selectList = document.getElementById("listeDeroulante");
     for (let i = 0; i < result.length; i++) {
         let option = document.createElement("option")
-        option.value = result[i]["id"];
+        option.value = result[i]["idLearner"];
         option.text = result[i]["firstname"] + ' ' + result[i]["lastname"];
         selectList.appendChild(option);
     }
@@ -102,7 +77,7 @@ document.getElementById("help-form").addEventListener("submit", function (event)
 
     // Je récupère le nom de la personne qui veut de l'aide
     const idlearner = document.getElementById("listeDeroulante").value;
-
+console.log(idlearner)
     // On gère le fait que l'étudiant soit déjà dans la liste de ticket
     if (document.getElementById(idlearner) !== null){
         alert("Tu as déjà un ticket d'ouvert");
@@ -112,7 +87,6 @@ document.getElementById("help-form").addEventListener("submit", function (event)
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST","api/tickets");
     xmlhttp.setRequestHeader("Content-Type","application/json");
-    console.log(new Date().toISOString())
     xmlhttp.send(JSON.stringify({"date":new Date().toISOString(),"description":"test de ticket manuel","idLearner":idlearner,"open":true}));
 
     //On met à jour le tableau des tickets
