@@ -25,16 +25,24 @@ public class TicketDao implements Dao<Ticket> {
 
     @Override
     public List<Ticket> getAll() {
-        return jdbcTemplate.query("select * from ticket", ticketRowMapper);
+        return jdbcTemplate.query("select t.id, t.date, t.description, t.id_learner, l.lastname, l.firstname, open from ticket t\n" +
+                "inner join learner l on l.id_learner = t.id_learner\n" +
+                "WHERE open = true\n" +
+                "ORDER BY id ASC", ticketRowMapper);
     }
 
     @Override
     public void save(Ticket ticket) {
-        // A vous de jouer
+        // Insertion du ticket en base
+        String sql = "INSERT INTO ticket (description, id_learner) values ('"+ ticket.getDescription() + "','"+ ticket.getIdLearner() +"')";
+        jdbcTemplate.execute(sql);
     }
 
     @Override
     public void delete(Long id) {
-        // A vous de jouer
+        // Suppression du dernier ticket
+        String sql = "UPDATE ticket SET open = 'false' WHERE id = '" + id + "'";
+        jdbcTemplate.execute(sql);
     }
+
 }
