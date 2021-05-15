@@ -38,9 +38,7 @@ console.log(result);
                 xmlhttp.setRequestHeader("Content-Type","application/json");
                 xmlhttp.send(JSON.stringify(button.id.toString()));
 
-                //On met à jour le tableau des tickets
-                const table = document.getElementById("learner-body");
-                table.innerHTML = '';
+                //On met à jour le tableau des Appreunants
                 callApi(baseApiUrl, 'api/learner', 'GET', displayFn_learners);
             });
 
@@ -65,7 +63,7 @@ document.getElementById("learner-form").addEventListener("submit", function (eve
 
 
 
-        //On ajoute la demande de ticket (appel api avec l'information idlearner)
+        //On ajoute une appreunant (appel api avec l'information idlearner)
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST","api/learner");
         xmlhttp.setRequestHeader("Content-Type","application/json");
@@ -74,7 +72,7 @@ document.getElementById("learner-form").addEventListener("submit", function (eve
         let lastname = document.getElementById("nom").value;
         xmlhttp.send(JSON.stringify({"firstname":firstname,"lastname":lastname}));
 
-        //On met à jour le tableau des tickets
+        //On met à jour le tableau des appreunant
         callApi(baseApiUrl, 'api/learner', 'GET', displayFn_learners);
         document.getElementById("prenom").value = '';
         document.getElementById("nom").value = '';

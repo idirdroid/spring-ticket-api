@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promotions</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<h1>Distributeur de tickets pour la promo 🎫</h1>
+<h2>👽 Ici c'est comme à la poissonerie 🐠, il faut faire la queue !</h2>
+<a href="index.html"><< Retour</a>
+<form id="promotion-form" method="post">
+    <label for="nom">Nom de la promotion: </label>
+    <input type="text" id="nom" required>
+    <button type="submit">Ajouter la promotion</button>
+</form>
+
+<section>
+    <h2>Liste des Promotion.s</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Nom</th>
+        </tr>
+        </thead>
+        <tbody id="promotion-body">
+        </tbody>
+    </table>
+</section>
+
+<script src="main.js"></script>
+<script src="promotions.js"></script>
+</body>
+</html>
