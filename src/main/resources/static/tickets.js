@@ -87,7 +87,8 @@ console.log(idlearner)
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST","api/tickets");
     xmlhttp.setRequestHeader("Content-Type","application/json");
-    xmlhttp.send(JSON.stringify({"date":new Date().toISOString(),"description":"test de ticket manuel","idLearner":idlearner,"open":true}));
+        console.log(document.getElementById("description").value)
+    xmlhttp.send(JSON.stringify({"date":new Date().toISOString(),"description":document.getElementById("description").value,"idLearner":idlearner,"open":true}));
 
     //On met à jour le tableau des tickets
     callApi(baseApiUrl, 'api/tickets', 'GET', displayFn_tableau);
